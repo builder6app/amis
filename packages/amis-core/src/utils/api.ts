@@ -32,7 +32,8 @@ interface ApiCacheConfig extends ApiObject {
 
 const apiCaches: Array<ApiCacheConfig> = [];
 
-const isIE = !!(document as any).documentMode;
+const isIE =
+  typeof document !== 'undefined' && !!(document as any).documentMode;
 
 export function normalizeApi(
   api: Api,

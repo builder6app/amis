@@ -4,9 +4,11 @@
 
 import {JSONValueMap, findObjectsWithKey} from './utils/helper';
 import isPlainObject from 'lodash/isPlainObject';
-const isMobile = (window as any).matchMedia?.('(max-width: 768px)').matches
-  ? true
-  : false;
+const isMobile =
+  typeof window !== 'undefined' &&
+  (window as any).matchMedia?.('(max-width: 768px)').matches
+    ? true
+    : false;
 
 // 这里不能用 addSchemaFilter 是因为还需要更深层的替换，比如 select 里的 options
 export const envOverwrite = (schema: any, locale?: string) => {

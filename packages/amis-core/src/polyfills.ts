@@ -3,7 +3,7 @@
  */
 
 // ios 老版本没有这个会报错
-if (!('DragEvent' in window)) {
+if (typeof window !== 'undefined' && !('DragEvent' in window)) {
   Object.defineProperty(window, 'DragEvent', {
     value: class DragEvent {}
   });

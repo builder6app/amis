@@ -234,7 +234,7 @@ export const defaultOptions: RenderOptions = {
   richTextToken: '',
   useMobileUI: true, // 是否启用移动端原生 UI
   enableAMISDebug:
-    (window as any).enableAMISDebug ??
+    (typeof window !== 'undefined' && (window as any).enableAMISDebug) ??
     location.search.indexOf('amisDebug=1') !== -1 ??
     false,
   loadRenderer,

@@ -333,12 +333,18 @@ function handleMouseclick(e: MouseEvent) {
 }
 
 // hover 及点击后的高亮
-const amisHoverBox = document.createElement('div');
-amisHoverBox.className = 'AMISDebug-hoverBox';
-const amisActiveBox = document.createElement('div');
-amisActiveBox.className = 'AMISDebug-activeBox';
+let amisHoverBox = null as any;
+let amisActiveBox = null as any;
+
+if (typeof document !== 'undefined') {
+  amisHoverBox = document?.createElement('div');
+  amisHoverBox.className = 'AMISDebug-hoverBox';
+  amisActiveBox = document?.createElement('div');
+  amisActiveBox.className = 'AMISDebug-activeBox';
+}
 
 autorun(() => {
+  if (typeof document === 'undefined') return;
   const hoverId = store.hoverId;
   const hoverElement = document.querySelector(
     `[data-debug-id="${hoverId}"]`
@@ -355,6 +361,7 @@ autorun(() => {
 });
 
 autorun(() => {
+  if (typeof document === 'undefined') return;
   const activeId = store.activeId;
   const activeElement = document.querySelector(
     `[data-debug-id="${activeId}"]`
